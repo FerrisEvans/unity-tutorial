@@ -7,6 +7,7 @@ public class PipeSpawScipt : MonoBehaviour
     public GameObject pipe;
     public float spawnRate = 2.0F;
     private float timer = 0F;
+    public float heightOffset = 10F;
     
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,9 @@ public class PipeSpawScipt : MonoBehaviour
 
     private void SpawnPipe()
     {
-        Instantiate(pipe, transform.position, transform.rotation);
+        var y = transform.position.y;
+        var lowestPoint = y - heightOffset;
+        var highestPoint = y + heightOffset;
+        Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), 0), transform.rotation);
     }
 }
